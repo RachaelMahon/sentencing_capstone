@@ -1,0 +1,5 @@
+1 to 2 years:12
+6 months to 1 year:6
+greater than 2 years:24
+less than 6 months:3
+Not Available:12

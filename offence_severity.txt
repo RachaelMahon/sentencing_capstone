@@ -1,0 +1,15 @@
+Burglary:703
+Criminal Damage and Arson:8
+Driving Offences:546
+Murder:2350
+Other Crime:524
+Other Drugs:11
+Other Theft:33
+Possession of drugs:6
+Production/importation of drugs:496
+Public Disorder and Possession of weapons:37
+Robbery:746
+Shoplifting:13
+Supply of drugs:497
+Vehicle Crime:36
+Violent Crime:365

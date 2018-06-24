@@ -1,0 +1,12 @@
+12 months:12
+4 Years:48
+Life or Indeterminate Sentence:180
+Over 10 years and less than life:120
+Over 12 months and up to and including 18 months:12
+Over 18 months and up to and including 3 years:18
+Over 3 months and up to and including 6 months:3
+Over 3 years and less than 4 years:36
+Over 4 years and up to and including 5 years:48
+Over 5 years and up to and including 10 years:60
+Over 6 months to less than 12:6
+up to and including 3 months:2
