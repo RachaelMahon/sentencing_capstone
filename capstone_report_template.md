@@ -52,10 +52,6 @@ If the problem is that the criminal justice system is stressful and alienating f
 #### R2
 
 
-#### Mean squared error
-
-
-#### Mean absolute error
 
 
 In this section, you will need to clearly define the metrics or calculations you will use to measure performance of a model or result in your project. These calculations and metrics should be justified based on the characteristics of the problem and problem domain. Questions to ask yourself when writing this section:
@@ -70,7 +66,7 @@ _(approx. 2-4 pages)_
 
 #### Overview
 
-The data comprises of sentencing data for a courts in Wales and England. The dataset is anonymised but does contain the age ranges, sex and ethnicities of the subjects. It also contains the sentencing court, the type of offence and the police force who dealt with the matter. The dataset also includes, which is why I am chiefly interested, the ultimate sentence handed down to the defendant.
+The data comprises of sentencing data for the majority of courts in Wales and England. The dataset is anonymised but does contain the age ranges, sex and ethnicities of the subjects. It also contains the sentencing court, the type of offence and the police force who dealt with the matter. The dataset also includes, which is why I am chiefly interested, the ultimate sentence handed down to the defendant.
 
 Age - categorical - Age of the defendant split into three categories: 18-24, 25-34 and 35+
 Court - categorical - The Court that heard the cases
@@ -88,15 +84,16 @@ Because the dataset contains only categorical variables, some preprocessing will
 #### Supplementary Data
 
 I have also made use of the Crime Severity Score data tool released by the Office of National Statistics in June 2017. This data is described by the Office of National Statistics as a:
+
   "list of weights as a reflection of the legislation set by Parliament on behalf of the public and the courts in passing sentences in line with legislation and sentencing guidelines. It is not intended to be a pure ranking of severity of offences; it provides the basis for deriving a Severity Score rather than comparing weights for individual offences."
 
-For each offence type, I have created an average "weight" by getting the average of all the offences listed in that category from this list. It is a crude measurement of severity of the crime given the Office of National Statistics quote above and the means by which I have gotten it but we can still use it to explore the correlation between these weights and sentence duration.
+For each offence type, I have created an average "weight" by getting the average of all the offences listed in that category from this list. It is a crude measurement of severity of the crime given the Office of National Statistics quote above and the means by which I have gotten it but we can still use it to explore the correlation between these weights and sentence duration. The results of this calculation are visible in file 'offence_severity.txt'.
 
 The data is available here: https://www.ons.gov.uk/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoredatatool
 
 #### Outliers
 
-Upon exploring the data, I chose not to remove any outliers as, due to the nature of the data, it is unlikely that there are an incorrect entries in the data. I trust that the data presented by the Ministry of Justice is accurate. Furthermore, the data is mostly categorical and has been altered into pseudo-continuous variables using dictionaries. Because of this, there are big steps in the data and it is very prone to bunching around small sentences with a few very big sentences. Because of this, I do not believe that the removal of a particularly extreme sentence will be helpful. However, it is considerably effecting the results for predictions. This will be discussed further at the evaluation section.
+Upon exploring the data, I chose not to remove any outliers for two reasons. Firstly, due to the nature of the data, it is unlikely that there are an incorrect entries in the data. I trust that the data presented by the Ministry of Justice is accurate. Furthermore, the data is mostly categorical and has been altered into pseudo-continuous variables using dictionaries. Because of this, there are big steps in the data and it is very prone to bunching around small sentences with a few very big sentences. Because of this, I do not believe that the removal of a particularly extreme sentence will be helpful. However, it is considerably effecting the results for predictions. This will be discussed further at the evaluation section.
 
 
 #### The Data at a Glance
@@ -135,7 +132,7 @@ A much higher proportion of ethnically white people were convicted of crimes and
 - Sex
 A much higher proportion of men received custodial sentences than women.
 
-##### Linear Correlation
+##### Correlation Explorations
 
 ![Linear Regression with Offence Type](/linear_regression_offence_type.png)
 
@@ -145,14 +142,20 @@ A much higher proportion of men received custodial sentences than women.
 
 ![Correlation Matrix](/correlation_matrix.png)
 
+As a sanity check, I am pleased that being male correlates so strongly with not being female and being white correlates strongly with not being black.
+
+As expected the duration of the sentence appears to correlate strongly with the weighted severity of the offence.
+
+Surprisingly (to me at least), but understandably, the duration of the sentence appears to correlate most with the length of time between the offence and sentencing. This may be because not guilty pleas (and so trials) receive harsher sentences or because defendants are more likely to enter a not guilty plea on an offence with a long sentence or because the more severe the crime, the more complex the case and so the longer it will take to reach ultimate sentencing.
+
 
 ### Algorithms and Techniques
 
-Linear regression
+#### Linear regression
 
-Decision Tree Regression with one parameter but with different depths
+#### Decision Tree Regression with one parameter but with different depths
 
-Decision Tree Regression with multiple parameters
+##### Decision Tree Regression with multiple parameters
 
 
 
@@ -319,12 +322,11 @@ In this section, you will summarize the entire end-to-end problem solution and d
 
 ### Improvement
 
-
-
 As said above, I think the use of dictionaries is unsatisfactory and for an improvement, I would like to seek out other datasets that might be supplementary to this one. Perhaps around the locations of the courts from large cities, the mean household income in the city of the court, the percentage of school finishers or NEET defendants in the city of the court (ie not in education, employment or training) or any other relevant datasets.
 
 I'd also like to explore the problem from a classification point of view perhaps predicting the category of crime or otherwise.
 
+Furthermore, I should have removed the outliers on reflection and narrowed the topic of the report to relate to offences excluding murder or other custodial life sentences.
 
 In this section, you will need to provide discussion as to how one aspect of the implementation you designed could be improved. As an example, consider ways your implementation can be made more general, and what would need to be modified. You do not need to make this improvement, but the potential solutions resulting from these changes are considered and compared/contrasted to your current solution. Questions to ask yourself when writing this section:
 - _Are there further improvements that could be made on the algorithms or techniques you used in this project?_
