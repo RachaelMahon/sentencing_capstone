@@ -167,6 +167,10 @@ Due to the outputs of the linear visuals above
 
 
 
+
+![Single decision tree regressor bench mark model](/Single_decision_tree_regressors.png)
+
+
 In this section, you will need to provide a clearly defined benchmark result or threshold for comparing across performances obtained by your solution. The reasoning behind the benchmark (in the case where it is not an established result) should be discussed. Questions to ask yourself when writing this section:
 - _Has some result or value been provided that acts as a benchmark for measuring performance?_
 - _Is it clear how this result or value was obtained (whether by data or by hypothesis)?_
@@ -217,6 +221,11 @@ I assume that the dimensionality gained by retaining sex and ethnicity as featur
 
 
 I reused some code provided during the Boston Housing project earlier on in the Nanodegree. This was for the purpose of visualising the selection of the optimal hyperparameter. This was very helpful.
+
+![Learning Curves](/learning_curves.png)
+![Model Complexity](/complexity_model.png)
+
+
 
 Discussion of bias variance trade off  
 
