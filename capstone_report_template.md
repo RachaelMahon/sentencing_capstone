@@ -3,33 +3,39 @@
 ### Rachael Mahon
 June 2018
 
+
+TODO
+
+Explain all of the performance metrics in depth
+Set the performance metrics up so they can be easily compared
+Pull in the images from the data visualisations and also the learning curve and model complexity
+Talk about variance and biases
+Over fitting and underfitting
+curse of dimensionality
+Learning curves and model complexity
+Outliers and large data points dragging in directions
+Maybe normalisation as an improvement
+Explain decision trees - multiple regression and linear, max depths,
+Evaluate some predictions and talk about why they might be like that
+Do references - make sure I reference the reused Boston visualisations code
+Refactor the notebook - make sure it's all looking nice - check that single DT regressor code, could be cleaner
+Clean anything lifted
+
 ## I. Definition
 
 ### Project Overview
 
-The intention of this project is to explore UK criminal custodial sentencing data in order to evaluate whether predictions can be made about the duration of custodial sentence based on age of the defendant, severity of the crime and time taken for the matter to be processed by the criminal courts.  
+The intention of this project is to explore UK criminal custodial sentencing data in order to evaluate whether predictions can be made about the duration of custodial sentence based features of the crime and features of the defendant.
 
 To do this, I will evaluate the performance and predictive power of a model that has been trained and tested on data made available by the British Ministry for Justice in November 2011. The Ministry released 1.2 million records of criminal sentencing data for the majority of courts in England and Wales. The dataset is anonymised but does contain the age ranges, sex and ethnicities of the subjects. It also contains the sentencing court, the type of offence and the police force who dealt with the matter. The dataset also includes, which is why I am chiefly interested, the ultimate sentence handed down to the defendant.
 
-To achieve this stated aim, I will construct a working model which has the capability of predicting the sentence, I will separate the data into features and a target variable. I will need to convert the features and target variable into continuous values prior to training the model.
+To achieve this stated aim, I will construct a working model which has the capability of predicting the sentence. I will separate the data into features and a target variable. I will need to convert the features and target variable into continuous values prior to training the model.
 
 The intention of this project is not to create a method of suggested durations of sentence. Some companies have created software for the purposes of recommending sentences to judges based on algorithms which, in my opinion, violate the right to due process as defendants and their advocates are unable to scrutinise or challenge the algorithm due to it's protection by intellectual property law. Furthermore, they are based on historically sentence and are so destined to repeat the biases already ingrained in the criminal justice system.
 
 Cathy O'Neil, author of [Weapons of Math Destruction][1], has roundly pointed out how problematic the use of these completely unknown and sealed algorithms are, for example in the area of predictive policing software. These predictive models should not be treated as neutral as they are clearly influenced by the systemically problematic underpinning data and the goals and ideology of those who create and commission them.
 
 [1]: https://weaponsofmathdestructionbook.com/
-
-[2]:
-
-
-
-
-
-
-In this section, look to provide a high-level overview of the project in layman’s terms. Questions to ask yourself when writing this section:
-- _Has an overview of the project been provided, such as the problem domain, project origin, and related datasets or input data?_
-- _Has enough background information been given so that an uninformed reader would understand the problem domain and following problem statement?_
-
 
 
 
@@ -41,14 +47,15 @@ If the problem is that the criminal justice system is stressful and alienating f
 
 
 
-In this section, you will want to clearly define the problem that you are trying to solve, including the strategy (outline of tasks) you will use to achieve the desired solution. You should also thoroughly discuss what the intended solution will be for this problem. Questions to ask yourself when writing this section:
-- _Is the problem statement clearly defined? Will the reader understand what you are expecting to solve?_
-- _Have you thoroughly discussed how you will attempt to solve the problem?_
-- _Is an anticipated solution clearly defined? Will the reader understand what results you are looking for?_
-
 ### Metrics
 
+#### R2
 
+
+#### Mean squared error
+
+
+#### Mean absolute error
 
 
 In this section, you will need to clearly define the metrics or calculations you will use to measure performance of a model or result in your project. These calculations and metrics should be justified based on the characteristics of the problem and problem domain. Questions to ask yourself when writing this section:
@@ -131,7 +138,7 @@ A much higher proportion of men received custodial sentences than women.
 
 TODO insert the linear correlation here
 
-
+![Linear Correlation](/correlation_matrix.png)
 
 
 ### Algorithms and Techniques
@@ -246,10 +253,20 @@ In this section, the final model and any supporting qualities should be evaluate
 
 The ultimate model performs much better than the bench mark models.
 
-R2
+#### R2 for the simple linear regression
+0.10
 
-Mean squared error
 
+##### Decision tree regressors on the most highly correlated features:
+R^2 score for decision tree regressor with a max depth of 2 = -3.46
+R^2 score for decision tree regressor with a max depth of 5 = -1.93
+R^2 score for decision tree regressor with a max depth of 8 = -1.90
+
+Why are these negative?
+
+
+##### The result of the final decision tree regressor with optimised hyperparameters
+R2 Score: 0.325214733155
 
 
 In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
