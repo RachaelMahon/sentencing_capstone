@@ -112,7 +112,8 @@ Upon exploring the data, I chose not to remove any outliers as, due to the natur
 
 ### Exploratory Visualization
 
-TODO Insert screenshots taken from notebook
+![Exploring the data - figure 1.](/Explore_data_1.png)
+![Exploring the data - figure 2.](/Explore_data_2.png)
 
 ##### Visual Explorations of the Data
 
@@ -136,9 +137,13 @@ A much higher proportion of men received custodial sentences than women.
 
 ##### Linear Correlation
 
-TODO insert the linear correlation here
+![Linear Regression with Offence Type](/linear_regression_offence_type.png)
 
-![Linear Correlation](/correlation_matrix.png)
+
+![Linear Regression with Offence to Completion](/linear_regression_offence_to_completion.png)
+
+
+![Correlation Matrix](/correlation_matrix.png)
 
 
 ### Algorithms and Techniques
