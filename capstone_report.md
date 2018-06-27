@@ -3,22 +3,7 @@
 ### Rachael Mahon
 June 2018
 
-
-TODO
-
-Set the performance metrics up so they can be easily compared
-Pull in the images from the data visualisations and also the learning curve and model complexity
-Talk about variance and biases
-Over fitting and underfitting
-curse of dimensionality
-Learning curves and model complexity
-Outliers and large data points dragging in directions
-Maybe normalisation as an improvement
 Explain decision trees - multiple regression and linear, max depths,
-Evaluate some predictions and talk about why they might be like that
-Do references - make sure I reference the reused Boston visualisations code
-Refactor the notebook - make sure it's all looking nice - check that single DT regressor code, could be cleaner
-Clean anything lifted
 
 ## I. Definition
 
@@ -146,23 +131,24 @@ Surprisingly (to me at least), but understandably, the duration of the sentence 
 
 ### Algorithms and Techniques
 
+#### Cross Validation
+
 #### Linear regression
+
+I chose to use a simple linear regressor as an initial bench mark model to conveniently visualise and conceptualise the data and problem.
 
 #### Decision Tree Regression with one parameter but with different depths
 
+I have also chosen to explore the possibility of a single decision tree regressor around the most strongly correlated feature. I wanted to explore the performance of a decision tree regressor with one feature versus a decision tree regressor with more dimensionality.
+
 ##### Decision Tree Regression with multiple parameters
 
+I chose to use a decision tree regressor because I felt that this algorithm is intuitive when using data with continuous variables and binary variables. It is also convenient for conceptualising the problem.
 
-
-In this section, you will need to discuss the algorithms and techniques you intend to use for solving the problem. You should justify the use of each one based on the characteristics of the problem and the problem domain. Questions to ask yourself when writing this section:
-- _Are the algorithms you will use, including any default variables/parameters in the project clearly defined?_
-- _Are the techniques to be used thoroughly discussed and justified?_
-- _Is it made clear how the input data or datasets will be handled by the algorithms and techniques chosen?_
 
 ### Benchmark
 
 Due to the outputs of the linear visuals above
-
 
 ![Single decision tree regressor bench mark model](/Single_decision_tree_regressors.png)
 
@@ -262,7 +248,6 @@ R2 Score: 0.325214733155
 
 
 ## V. Conclusion
-_(approx. 1-2 pages)_
 
 ### Free-Form Visualization
 
