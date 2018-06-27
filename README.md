@@ -13,3 +13,5 @@ Due to the large size of the dataset being used, I am unable to include it as pa
 http://www.justice.gov.uk/downloads/publications/statistics-and-data/criminal-justice-stats/recordlevel.zip
 
 To run the code in the iPython notebook, simply download the data and move it to the root of this directory. There should be no need to change the name of the dataset.
+
+Please note that I have reused some code from Udacity for creating learning curve and model complexity graphs. If there is any issue with this, please let me know.
