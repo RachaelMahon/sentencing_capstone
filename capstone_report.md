@@ -3,8 +3,6 @@
 ### Rachael Mahon
 June 2018
 
-Explain decision trees - multiple regression and linear, max depths,
-
 ## I. Definition
 
 ### Project Overview
@@ -22,13 +20,11 @@ Cathy O'Neil, author of [Weapons of Math Destruction][1], has roundly pointed ou
 [1]: https://weaponsofmathdestructionbook.com/
 
 
-
 ### Problem Statement
 
 When accused of a crime, you do not have enough data to make decisions about whether you should plead guilty or go to trial, if you need to make arrangements about your employment, property or child care or whether you should appeal a sentence you feel is too harsh. There are too many unknowns and it is very difficult to get an accurate answer on these things.
 
 If the problem is that the criminal justice system is stressful and alienating for many people being processed by it, the solution would be to use previous data to provide some insight for managing expectations or decision-making on whether or not to go to trial or to appeal a sentence. The output when this project is completed should be the capacity for someone to plug in some their personal details, the offence, the court etc, and receive a reasonably accurate sentencing figure based on a regression analysis.
-
 
 
 ### Metrics
@@ -89,7 +85,9 @@ Upon exploring the data, I chose not to remove any outliers for two reasons. Fir
 
 ### Exploratory Visualization
 
-![Exploring the data - figure 1.](/Explore_data_1.png)
+![Exploring the data - figure 1.](/Explore_data_1.png)  
+
+
 ![Exploring the data - figure 2.](/Explore_data_2.png)
 
 ##### Visual Explorations of the Data
@@ -148,14 +146,10 @@ I chose to use a decision tree regressor because I felt that this algorithm is i
 
 ### Benchmark
 
-Due to the outputs of the linear visuals above
+As explained above, I undertook two bench mark models. Firstly a linear regression which performed very poorly (R2 of 0.10) and three decision tree regressors with max depths of 2, 5 and 8, all of which performed very slightly better than my simple linear regressor ie R2 of 0.18, 0.25 and 0.26 respectively.
+
 
 ![Single decision tree regressor bench mark model](/Single_decision_tree_regressors.png)
-
-
-In this section, you will need to provide a clearly defined benchmark result or threshold for comparing across performances obtained by your solution. The reasoning behind the benchmark (in the case where it is not an established result) should be discussed. Questions to ask yourself when writing this section:
-- _Has some result or value been provided that acts as a benchmark for measuring performance?_
-- _Is it clear how this result or value was obtained (whether by data or by hypothesis)?_
 
 
 ## III. Methodology
@@ -219,28 +213,28 @@ A great many things could be improved about this algorithm. I feel the project w
 ## IV. Results
 
 ### Model Evaluation and Validation
-In this section, the final model and any supporting qualities should be evaluated in detail. It should be clear how the final model was derived and why this model was chosen. In addition, some type of analysis should be used to validate the robustness of this model and its solution, such as manipulating the input data or environment to see how the model’s solution is affected (this is called sensitivity analysis). Questions to ask yourself when writing this section:
-- _Is the final model reasonable and aligning with solution expectations? Are the final parameters of the model appropriate?_
-- _Has the final model been tested with various inputs to evaluate whether the model generalizes well to unseen data?_
-- _Is the model robust enough for the problem? Do small perturbations (changes) in training data or the input space greatly affect the results?_
-- _Can results found from the model be trusted?_
+
+I chose a decision tree multiple regressor for this problem because, while I felt that the feature of weighted offence severity was very important and this was highly correlated with the sentence, I thought there might be a better fit for the data with increased dimensionality that was capable of representing some binary features such as sex and ethnicity. This theory, I feel, is born out by the results that with increased dimensionality, the model is capable of making ever so slightly more accurate predictions.
+
+I feel that the methods selected and the implementation are proven to work based on the improvement on the benchmark models. However, it falls greatly below my expectations due to limitation in the data. It can generalise, but not well. It is hampered by a number of problems that are explained in detail elsewhere in the report.
+
 
 ### Justification
 
 The ultimate model performs better than the bench mark models but not significantly so. I think by no stretch of the imagination can we consider this problem to have been solved but I am optimistic about the models capabilities if data was acquired with more nuanced continuous values for the duration of sentence, severity of the crime, age of the defendant and time taken to process.
 
-The final model is more than 3 times better than the simple linear regression model. Confusingly, but not impossibly, the decision tree regressors with varying max depths on the single feature of the most highly correlated feature returns negative values but the least negative  value for what turned out to be the optimal max depth.
+The final model is more than 3 times better than the simple linear regression model. The decision tree regressors with varying max depths on the single feature of the most highly correlated feature returns values that are certainly an improvement on the simple linear regressor. The difference between the final model and the single decision tree regressor is not significant in my opinion.
 
 #### R2 for the simple linear regression
 0.10
 
 
 ##### Decision tree regressors on the most highly correlated features:
-R^2 score for decision tree regressor with a max depth of 2 = -3.46  
+R^2 score for decision tree regressor with a max depth of 2 = 0.18
 
-R^2 score for decision tree regressor with a max depth of 5 = -1.93  
+R^2 score for decision tree regressor with a max depth of 5 = 0.25  
 
-R^2 score for decision tree regressor with a max depth of 8 = -1.90  
+R^2 score for decision tree regressor with a max depth of 8 = 0.26
 
 
 ##### The result of the final decision tree regressor with optimised hyperparameters
