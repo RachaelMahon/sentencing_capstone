@@ -85,10 +85,10 @@ Upon exploring the data, I chose not to remove any outliers for two reasons. Fir
 
 ### Exploratory Visualization
 
-![Exploring the data - figure 1.](/Explore_data_1.png)  
+![](Explore_data_1.png)  
 
 
-![Exploring the data - figure 2.](/Explore_data_2.png)
+![](Explore_data_2.png)
 
 ##### Visual Explorations of the Data
 
@@ -114,13 +114,13 @@ A much higher proportion of men received custodial sentences than women.
 
 ##### Correlation Explorations
 
-![Linear Regression with Offence Type](/linear_regression_offence_type.png)
+![Linear Regression with Offence Type](linear_regression_offence_type.png)
 
 
-![Linear Regression with Offence to Completion](/linear_regression_offence_to_completion.png)
+![Linear Regression with Offence to Completion](linear_regression_offence_to_completion.png)
 
 
-![Correlation Matrix](/correlation_matrix.png)
+![Correlation Matrix](correlation_matrix.png)
 
 As a sanity check, I am pleased that being male correlates so strongly with not being female and being white correlates strongly with not being black.
 
@@ -148,7 +148,7 @@ I chose to use a decision tree regressor because I felt that this algorithm is i
 As explained above, I undertook two bench mark models. Firstly a linear regression which performed very poorly (R2 of 0.10) and three decision tree regressors with max depths of 2, 5 and 8, all of which performed very slightly better than my simple linear regressor ie R2 of 0.18, 0.25 and 0.26 respectively.
 
 
-![Single decision tree regressor bench mark model](/Single_decision_tree_regressors.png)
+![Single decision tree regressor bench mark model](Single_decision_tree_regressors.png)
 
 
 ## III. Methodology
@@ -194,11 +194,11 @@ I reused some code provided during the Boston Housing project earlier on in the 
 
 We can see from the below learning curve diagrams that the optimal max depth for our model is 6. The training score and testing score here are perfectly aligned. It seems very close for max depth one and three also but there appears to be a divergence at the learning curve of max depth of 10. This finding is validate further below in our R2 scores for different max depths.
 
-![Learning Curves](/learning_curves.png)
+![Learning Curves](learning_curves.png)
 
 The model complexity graph below also validates these findings. We can see the validation and training scores being very tight with each other and slowly beginning to diverge after a max depth of 8.
 
-![Model Complexity](/complexity_model.png)
+![Model Complexity](complexity_model.png)
 
 After a max depth of 8 the model begins to suffer very slightly but it is important to note here that, due to limitations of the data already discussed and explored further later, the model does not profess to fit the data well. The highest R2 score it is capable of achieving in the model complexity graph is barely 0.3, only rising about 0.15 with increasing depths and then very slightly begins to diverge. Really any changes in max depth from 6 to 10 would not significantly impact the quality of the fit and it could never be accused of overfitting.  
 
@@ -245,7 +245,7 @@ R2 Score: 0.325214733155
 
 Below are the results of some the model's predictions on custodial sentences for different types of offences and different characterics of the defendants. I think fed with the correct data, this kind of result could potentially be very valuable to someone attempting to plan their life while involved in criminal proceedings.
 
-![Predictions](/predictions.png)
+![Predictions](predictions.png)
 
 
 ### Reflection
