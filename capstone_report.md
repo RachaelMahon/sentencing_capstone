@@ -241,59 +241,50 @@ In this section, the final model and any supporting qualities should be evaluate
 
 ### Justification
 
-The ultimate model performs much better than the bench mark models.
+The ultimate model performs better than the bench mark models but not significantly so. I think by no stretch of the imagination can we consider this problem to have been solved but I am optimistic about the models capabilities if data was acquired with more nuanced continuous values for the duration of sentence, severity of the crime, age of the defendant and time taken to process.
+
+The final model is more than 3 times better than the simple linear regression model. Confusingly, but not impossibly, the decision tree regressors with varying max depths on the single feature of the most highly correlated feature returns negative values but the least negative  value for what turned out to be the optimal max depth.
 
 #### R2 for the simple linear regression
 0.10
 
 
 ##### Decision tree regressors on the most highly correlated features:
-R^2 score for decision tree regressor with a max depth of 2 = -3.46
-R^2 score for decision tree regressor with a max depth of 5 = -1.93
-R^2 score for decision tree regressor with a max depth of 8 = -1.90
+R^2 score for decision tree regressor with a max depth of 2 = -3.46  
 
+R^2 score for decision tree regressor with a max depth of 5 = -1.93  
 
+R^2 score for decision tree regressor with a max depth of 8 = -1.90  
 
 
 ##### The result of the final decision tree regressor with optimised hyperparameters
 R2 Score: 0.325214733155
 
 
-In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
-- _Are the final results found stronger than the benchmark result reported earlier?_
-- _Have you thoroughly analyzed and discussed the final solution?_
-- _Is the final solution significant enough to have solved the problem?_
-
-
 ## V. Conclusion
 _(approx. 1-2 pages)_
 
 ### Free-Form Visualization
-In this section, you will need to provide some form of visualization that emphasizes an important quality about the project. It is much more free-form, but should reasonably support a significant result or characteristic about the problem that you want to discuss. Questions to ask yourself when writing this section:
-- _Have you visualized a relevant or important quality about the problem, dataset, input data, or results?_
-- _Is the visualization thoroughly analyzed and discussed?_
-- _If a plot is provided, are the axes, title, and datum clearly defined?_
+
+Below are the results of some the model's predictions on custodial sentences for different types of offences and different characterics of the defendants. I think fed with the correct data, this kind of result could potentially be very valuable to someone attempting to plan their life while involved in criminal proceedings.
+
+![Predictions](/predictions.png)
 
 
 ### Reflection
 
 While I feel that I failed spectacularly in relation to my stated aim, I am pleased with my results as I fully comprehend now the specific issues with the data and my approach. I stumbled into a number of pitfalls from the get go.
 
-
 It is hard to ignore the considerable issues in this dataset. I did not fully appreciate how limiting the total absence of nuanced continuous variables would be when I decided to undertake a regression based task. I feel the data is actually much more suited to a classification based task but I was too wrapped up in my desire to solve a very specific problem rather than solving the problems the data lends itself to. I am not particularly satisfied with my handling of the categorical variables through dictionaries but I think it is the best option given the data and the task. I think if I were to write the proposal again, I would focus on a classification task.
 
 Having said that, some other sentencing data in a similar format that may at any time be released by the Ministry of Justice or could be requested as a Freedom of Information request. A more modern dataset may have more nuance. Additionally, some other supplementary data could be very useful like the crime severity data tool from the Office of National Statistics.
 
+While the final model does not meet my expectations of the solution, it does perform better than bench mark models and because of this, I consider it to be a success with caveats. My aim was to be capable of plugging in data to the model and receiving a ball park figure which, although likely wildly inaccurate, is provable better than a simple linear regressor and is a proof of concept for the idea that, given good data, such a model is possible.
 
-
-
-In this section, you will summarize the entire end-to-end problem solution and discuss one or two particular aspects of the project you found interesting or difficult. You are expected to reflect on the project as a whole to show that you have a firm understanding of the entire process employed in your work. Questions to ask yourself when writing this section:
-- _Have you thoroughly summarized the entire process you used for this project?_
-- _Were there any interesting aspects of the project?_
-- _Were there any difficult aspects of the project?_
-- _Does the final model and solution fit your expectations for the problem, and should it be used in a general setting to solve these types of problems?_
 
 ### Improvement
+
+I cannot overstate the limitations I inflicted on myself by choosing data I was interested in rather than data that lends itself to such a problem. Most of my improvements would relate to not using dictionaries as a blunt instrument, not pressing ahead when the limitations of the data were obvious etc.
 
 As said above, I think the use of dictionaries is unsatisfactory and for an improvement, I would like to seek out other datasets that might be supplementary to this one. Perhaps around the locations of the courts from large cities, the mean household income in the city of the court, the percentage of school finishers or NEET defendants in the city of the court (ie not in education, employment or training) or any other relevant datasets.
 
@@ -301,10 +292,6 @@ I'd also like to explore the problem from a classification point of view perhaps
 
 Furthermore, I should have removed the outliers on reflection and narrowed the topic of the report to relate to offences excluding murder or other custodial life sentences.
 
-In this section, you will need to provide discussion as to how one aspect of the implementation you designed could be improved. As an example, consider ways your implementation can be made more general, and what would need to be modified. You do not need to make this improvement, but the potential solutions resulting from these changes are considered and compared/contrasted to your current solution. Questions to ask yourself when writing this section:
-- _Are there further improvements that could be made on the algorithms or techniques you used in this project?_
-- _Were there algorithms or techniques you researched that you did not know how to implement, but would consider using if you knew how?_
-- _If you used your final solution as the new benchmark, do you think an even better solution exists?_
 
 -----------
 
