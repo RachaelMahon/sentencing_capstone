@@ -6,7 +6,6 @@ June 2018
 
 TODO
 
-Explain all of the performance metrics in depth
 Set the performance metrics up so they can be easily compared
 Pull in the images from the data visualisations and also the learning curve and model complexity
 Talk about variance and biases
@@ -51,16 +50,12 @@ If the problem is that the criminal justice system is stressful and alienating f
 
 #### R2
 
+The metric I have chosen to use for each stage of this linear regression analysis is R2. It returns a value between 0 and 1 where 0 indicates that the model is not explaining any of the variability in the data and 1 indicates that the model explains exactly all the variability in the data ie. the higher the R2 figure, the better. It is calculated as 1 - the residual sum of square / total sum of squares.
 
-
-
-In this section, you will need to clearly define the metrics or calculations you will use to measure performance of a model or result in your project. These calculations and metrics should be justified based on the characteristics of the problem and problem domain. Questions to ask yourself when writing this section:
-- _Are the metrics you’ve chosen to measure the performance of your models clearly discussed and defined?_
-- _Have you provided reasonable justification for the metrics chosen based on the problem and solution?_
+Using R2 as our metric has an interesting quality in that R2 may be negative when applied to unseen data. It is a useful and intuitive metric for linear regressions and decision tree regressions.
 
 
 ## II. Analysis
-_(approx. 2-4 pages)_
 
 ### Data Exploration
 
@@ -169,8 +164,6 @@ In this section, you will need to discuss the algorithms and techniques you inte
 Due to the outputs of the linear visuals above
 
 
-
-
 ![Single decision tree regressor bench mark model](/Single_decision_tree_regressors.png)
 
 
@@ -180,7 +173,6 @@ In this section, you will need to provide a clearly defined benchmark result or 
 
 
 ## III. Methodology
-_(approx. 3-5 pages)_
 
 ### Data Preprocessing
 
@@ -220,44 +212,25 @@ I assume that the dimensionality gained by retaining sex and ethnicity as featur
 
 ### Implementation
 
-
-
-
 I reused some code provided during the Boston Housing project earlier on in the Nanodegree. This was for the purpose of visualising the selection of the optimal hyperparameter. This was very helpful.
 
+We can see from the below learning curve diagrams that the optimal max depth for our model is 6. The training score and testing score here are perfectly aligned. It seems very close for max depth one and three also but there appears to be a divergence at the learning curve of max depth of 10. This finding is validate further below in our R2 scores for different max depths.
+
 ![Learning Curves](/learning_curves.png)
+
+The model complexity graph below also validates these findings. We can see the validation and training scores being very tight with each other and slowly beginning to diverge after a max depth of 8.
+
 ![Model Complexity](/complexity_model.png)
 
-
-
-Discussion of bias variance trade off  
-
-
-
-
-In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
-- _Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?_
-- _Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?_
-- _Was there any part of the coding process (e.g., writing complicated functions) that should be documented?_
-
+After a max depth of 8 the model begins to suffer very slightly but it is important to note here that, due to limitations of the data already discussed and explored further later, the model does not profess to fit the data well. The highest R2 score it is capable of achieving in the model complexity graph is barely 0.3, only rising about 0.15 with increasing depths and then very slightly begins to diverge. Really any changes in max depth from 6 to 10 would not significantly impact the quality of the fit and it could never be accused of overfitting.  
 
 
 ### Refinement
 
-A great many things could be improved about this algorithm. I feel the project would benefit from an expanded range of features and more nuanced continuous variables which may be available as this data is supposed to be publicly available. My approach to making the variables continuous was a bit of a sledgehammer.
-
-
-
-
-
-In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
-- _Has an initial solution been found and clearly reported?_
-- _Is the process of improvement clearly documented, such as what techniques were used?_
-- _Are intermediate and final solutions clearly reported as the process is improved?_
+A great many things could be improved about this algorithm. I feel the project would benefit from an expanded range of features and more nuanced continuous variables which may be available as this data is supposed to be publicly available. My approach to making the variables continuous was a bit of a sledgehammer. Overall, I must concede that the project was a bit of a failure in terms of predicting actual sentencing. I was optimistic about the possibility based on the fact that there was so much data but so many compromises and concessions had to be made to shoe-horn it into a regression problem when ultimately, I classification problem may have been much more fruitful. My personal interest in the topic, and likely my biases, blinded me to the limitations of this data.
 
 
 ## IV. Results
-_(approx. 2-3 pages)_
 
 ### Model Evaluation and Validation
 In this section, the final model and any supporting qualities should be evaluated in detail. It should be clear how the final model was derived and why this model was chosen. In addition, some type of analysis should be used to validate the robustness of this model and its solution, such as manipulating the input data or environment to see how the model’s solution is affected (this is called sensitivity analysis). Questions to ask yourself when writing this section:
@@ -279,7 +252,7 @@ R^2 score for decision tree regressor with a max depth of 2 = -3.46
 R^2 score for decision tree regressor with a max depth of 5 = -1.93
 R^2 score for decision tree regressor with a max depth of 8 = -1.90
 
-Why are these negative?
+
 
 
 ##### The result of the final decision tree regressor with optimised hyperparameters
