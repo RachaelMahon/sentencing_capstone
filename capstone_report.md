@@ -110,6 +110,8 @@ A much higher proportion of ethnically white people were convicted of crimes and
 - Sex
 A much higher proportion of men received custodial sentences than women.
 
+
+
 ##### Correlation Explorations
 
 ![Linear Regression with Offence Type](/linear_regression_offence_type.png)
@@ -129,8 +131,6 @@ Surprisingly (to me at least), but understandably, the duration of the sentence 
 
 ### Algorithms and Techniques
 
-#### Cross Validation
-
 #### Linear regression
 
 I chose to use a simple linear regressor as an initial bench mark model to conveniently visualise and conceptualise the data and problem.
@@ -143,7 +143,6 @@ I have also chosen to explore the possibility of a single decision tree regresso
 
 I chose to use a decision tree regressor because I felt that this algorithm is intuitive when using data with continuous variables and binary variables. It is also convenient for conceptualising the problem.
 
-
 ### Benchmark
 
 As explained above, I undertook two bench mark models. Firstly a linear regression which performed very poorly (R2 of 0.10) and three decision tree regressors with max depths of 2, 5 and 8, all of which performed very slightly better than my simple linear regressor ie R2 of 0.18, 0.25 and 0.26 respectively.
@@ -155,7 +154,6 @@ As explained above, I undertook two bench mark models. Firstly a linear regressi
 ## III. Methodology
 
 ### Data Preprocessing
-
 
 For the purposes of this project, we are only interested in custodial sentences ie. when a defendant was actually deprived of their liberty. This data additionally contains fine data which is also a very interesting area of study but unfortunately goes beyond the scope of this project. Removing records where the defendant was sentenced to only a fine or where the sentence duration is missing for some other reason removes a very large number of records from the dataset. While it is not ideal to reduce the dataset by this amount, the original dataset was so large as to be unwieldy on my personal machine and I would have had difficulty processing it in depth. The original data contained records and the data with fines and empty sentences removed has 97814 records.
 
@@ -270,16 +268,3 @@ As said above, I think the use of dictionaries is unsatisfactory and for an impr
 I'd also like to explore the problem from a classification point of view perhaps predicting the category of crime or otherwise.
 
 Furthermore, I should have removed the outliers on reflection and narrowed the topic of the report to relate to offences excluding murder or other custodial life sentences.
-
-
------------
-
-**Before submitting, ask yourself. . .**
-
-- Does the project report you’ve written follow a well-organized structure similar to that of the project template?
-- Is each section (particularly **Analysis** and **Methodology**) written in a clear, concise and specific fashion? Are there any ambiguous terms or phrases that need clarification?
-- Would the intended audience of your project be able to understand your analysis, methods, and results?
-- Have you properly proof-read your project report to assure there are minimal grammatical and spelling mistakes?
-- Are all the resources used for this project correctly cited and referenced?
-- Is the code that implements your solution easily readable and properly commented?
-- Does the code execute without error and produce results similar to those reported?
