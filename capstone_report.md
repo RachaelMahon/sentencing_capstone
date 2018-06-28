@@ -11,7 +11,7 @@ The intention of this project is to explore UK criminal custodial sentencing dat
 
 To do this, I will evaluate the performance and predictive power of a model that has been trained and tested on data made available by the British Ministry for Justice in November 2011. The Ministry released 1.2 million records of criminal sentencing data for the majority of courts in England and Wales. The dataset is anonymised but does contain the age ranges, sex and ethnicities of the subjects. It also contains the sentencing court, the type of offence and the police force who dealt with the matter. The dataset also includes, which is why I am chiefly interested, the ultimate sentence handed down to the defendant.
 
-To achieve this stated aim, I will construct a working model which has the capability of predicting the sentence. I will separate the data into features and a target variable. I will need to convert the features and target variable into continuous values prior to training the model.
+To achieve this stated aim, I will construct a working model which has the capability of predicting the sentence. I will separate the data into features and a target variable. I will need to convert the features and target variable into continuous values prior to training the model. I have decided to use a multi dimensional decision tree regressor to do this. I will use a single decision tree regressor and linear regressor as my benchmark models.
 
 The intention of this project is not to create a method of suggested durations of sentence. Some companies have created software for the purposes of recommending sentences to judges based on algorithms which, in my opinion, violate the right to due process as defendants and their advocates are unable to scrutinise or challenge the algorithm due to it's protection by intellectual property law. Furthermore, they are based on historically sentence and are so destined to repeat the biases already ingrained in the criminal justice system.
 
@@ -33,7 +33,7 @@ If the problem is that the criminal justice system is stressful and alienating f
 
 The metric I have chosen to use for each stage of this linear regression analysis is R2. It returns a value between 0 and 1 where 0 indicates that the model is not explaining any of the variability in the data and 1 indicates that the model explains exactly all the variability in the data ie. the higher the R2 figure, the better. It is calculated as 1 - the residual sum of square / total sum of squares.
 
-Using R2 as our metric has an interesting quality in that R2 may be negative when applied to unseen data. It is a useful and intuitive metric for linear regressions and decision tree regressions.
+Using R2 as our metric has an interesting quality in that R2 may be negative when applied to unseen data. It is very possible that this may be the case in our data as there are a few outliers and if they happen to fall into the testing data on shuffle split, R2 may be negative.
 
 
 ## II. Analysis
@@ -131,15 +131,41 @@ Surprisingly (to me at least), but understandably, the duration of the sentence 
 
 ### Algorithms and Techniques
 
+1. Data preprocessing and converting of continuous variables
+2. Exploring the data and considering what might be significant features
+3. Validating some theories using correlation matrix
+4. Removing any unneeded dimensionality
+5. Splitting the data with cross validation
+6. Defining a performance metric
+7. Creating bench mark models
+8. Using grid search to find the optimal parameter
+9. Validating that this is the optimal parameter using learning curves and complexity models
+10. Creating the decision tree regressor and fit it with our training data - this was by far the easiest portion of the task. It worked totally out of the box. It seemed so easy that I assumed something must be wrong for a long time and was trying to debug it before I realised that it actually did just work out of the box like that.
+11. I think evaluated the performance
+12. And finally fed it some data to return predictions on which seemed reasonable.
+
+There were no particularly difficult parts to code. To be honest, a lot of the main difficulties I encountered related to my versions of python, deprecated libraries and incompatible imports that required a lot of debugging.
+
 #### Linear regression
 
-I chose to use a simple linear regressor as an initial bench mark model to conveniently visualise and conceptualise the data and problem.
+I chose to use a simple linear regressor as an initial bench mark model to conveniently visualise and conceptualise the data and problem. Linear regression makes for a nice benchmark model for this type of task that is a dependent variables relationship to an explanatory variable. It can only model one relationship so it is key to select the correct variable to demonstrate the relationship. This is selected by finding the most highly correlated variable using techniques like a correlation matrix.
 
-#### Decision Tree Regression with one parameter but with different depths
+
+#### Decision Trees
+
+Decision tree regressors breaks the data down into smaller and smaller subsets based on learning a set of decision rules. It is slightly difficult to see fully but below is an image of the full decision tree ultimately used by the model. There are non-leaf nodes or decision nodes which are mean squared error to make a decision on the split ie a test on attributes. Each branch from the root node is a representation of the outcomes of tests. The nodes at the end of each branch are the leaf nodes and represent the class that a piece of test data will be characterised as if it arrives at that node. The max depth of these branches is set as the length required to reach the optimal result beyond which the model may cease to be able to generalise on unseen data but is deep enough that it adequately represents the training data.  
+
+It can model more complicated, multi dimensional relationships which linear regression cannot. A single decision tree regressor can also outperform a linear regressor on data with influential outliers such as this data.
+
+I employed the use of both a single decision tree regressor (with the most correlated feature) and multiple decision tree regressor (retaining multiple features for the training data).
+
+![](fullSlice.png)
+
+##### Decision Tree Regression with one parameter but with different depths
 
 I have also chosen to explore the possibility of a single decision tree regressor around the most strongly correlated feature. I wanted to explore the performance of a decision tree regressor with one feature versus a decision tree regressor with more dimensionality.
 
-##### Decision Tree Regression with multiple parameters
+###### Decision Tree Regression with multiple parameters
 
 I chose to use a decision tree regressor because I felt that this algorithm is intuitive when using data with continuous variables and binary variables. It is also convenient for conceptualising the problem.
 
@@ -152,6 +178,8 @@ As explained above, I undertook two bench mark models. Firstly a linear regressi
 
 
 ## III. Methodology
+
+Aside from the problems with the data discussed at length elsewhere, creating this model was very straightforward.
 
 ### Data Preprocessing
 
@@ -210,6 +238,8 @@ A great many things could be improved about this algorithm. I feel the project w
 
 ## IV. Results
 
+Overfitting is a known issue when using Decision Trees and based on the R2 score, it's clear that the model is capable of generalising well.
+
 ### Model Evaluation and Validation
 
 I chose a decision tree multiple regressor for this problem because, while I felt that the feature of weighted offence severity was very important and this was highly correlated with the sentence, I thought there might be a better fit for the data with increased dimensionality that was capable of representing some binary features such as sex and ethnicity. This theory, I feel, is born out by the results that with increased dimensionality, the model is capable of making ever so slightly more accurate predictions.
@@ -245,7 +275,13 @@ R2 Score: 0.325214733155
 
 Below are the results of some the model's predictions on custodial sentences for different types of offences and different characterics of the defendants. I think fed with the correct data, this kind of result could potentially be very valuable to someone attempting to plan their life while involved in criminal proceedings.
 
+I also include a visualisation of the final model as a decision tree. Here we can see the exact path taken by the algorithm in directing the samples to their predictions.
+
 ![Predictions](predictions.png)
+
+![](first.png)  
+![](fullSlice.png)  
+![](oneFull.png)  
 
 
 ### Reflection
