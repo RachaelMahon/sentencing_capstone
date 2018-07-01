@@ -131,6 +131,8 @@ Surprisingly (to me at least), but understandably, the duration of the sentence 
 
 ### Algorithms and Techniques
 
+To implement this, I followed the below steps:
+
 1. Data preprocessing and converting of continuous variables
 2. Exploring the data and considering what might be significant features
 3. Validating some theories using correlation matrix
@@ -141,7 +143,7 @@ Surprisingly (to me at least), but understandably, the duration of the sentence 
 8. Using grid search to find the optimal parameter
 9. Validating that this is the optimal parameter using learning curves and complexity models
 10. Creating the decision tree regressor and fit it with our training data - this was by far the easiest portion of the task. It worked totally out of the box. It seemed so easy that I assumed something must be wrong for a long time and was trying to debug it before I realised that it actually did just work out of the box like that.
-11. I think evaluated the performance
+11. I then evaluated the performance
 12. And finally fed it some data to return predictions on which seemed reasonable.
 
 There were no particularly difficult parts to code. To be honest, a lot of the main difficulties I encountered related to my versions of python, deprecated libraries and incompatible imports that required a lot of debugging.
@@ -179,7 +181,7 @@ As explained above, I undertook two bench mark models. Firstly a linear regressi
 
 ## III. Methodology
 
-Aside from the problems with the data discussed at length elsewhere, creating this model was very straightforward.
+Aside from the problems with the data discussed at length elsewhere, creating this model was very straightforward and I followed the below process. Decision tree regressors work pretty much out of the box so below the enumerated steps are some comments about data processing and optimising the hyperparameter. These are to aid any one wishing to replicate these results.  
 
 ### Data Preprocessing
 
@@ -218,6 +220,15 @@ I assume that the dimensionality gained by retaining sex and ethnicity as featur
 
 ### Implementation
 
+Below is an enumerated list of how I completed the actual implementation after all the data was processed, bench mark models completed and metrics decided upon:
+
+1. Using grid search to find the optimal parameter
+
+To do this, you create a new Decision Tree regressor from sklearn, a new scoring function using make_scorer from sklearn metrics and a new grid from the GridSearchCV library. The regressor, a list of finite parameters to check, the scoring function (which is our overall performance metric in this case) and some cross validation sets are passed to the grid search as parameters. This then trains the model for each parameter in the list on the cross validated training sets and determines which one is the best based on the performance metric that it was supplied with.
+
+
+2. Validating that this is the optimal parameter using learning curves and complexity models
+
 I reused some code provided during the Boston Housing project earlier on in the Nanodegree. This was for the purpose of visualising the selection of the optimal hyperparameter. This was very helpful.
 
 We can see from the below learning curve diagrams that the optimal max depth for our model is 6. The training score and testing score here are perfectly aligned. It seems very close for max depth one and three also but there appears to be a divergence at the learning curve of max depth of 10. This finding is validate further below in our R2 scores for different max depths.
@@ -230,15 +241,20 @@ The model complexity graph below also validates these findings. We can see the v
 
 After a max depth of 8 the model begins to suffer very slightly but it is important to note here that, due to limitations of the data already discussed and explored further later, the model does not profess to fit the data well. The highest R2 score it is capable of achieving in the model complexity graph is barely 0.3, only rising about 0.15 with increasing depths and then very slightly begins to diverge. Really any changes in max depth from 6 to 10 would not significantly impact the quality of the fit and it could never be accused of overfitting.  
 
+3. Creating the decision tree regressor and fit it with our training data - this was by far the easiest portion of the task. It worked totally out of the box. It seemed so easy that I assumed something must be wrong for a long time and was trying to debug it before I realised that it actually did just work out of the box like that. It seems too good to be true.
+
+Simply put, you create the new Decision Tree regressor from sklearn with a parameter of "max_depth" set equal to the optimal max_depth decided by the previous step. You fit it with your target and feature training data.  
 
 ### Refinement
 
-A great many things could be improved about this algorithm. I feel the project would benefit from an expanded range of features and more nuanced continuous variables which may be available as this data is supposed to be publicly available. My approach to making the variables continuous was a bit of a sledgehammer. Overall, I must concede that the project was a bit of a failure in terms of predicting actual sentencing. I was optimistic about the possibility based on the fact that there was so much data but so many compromises and concessions had to be made to shoe-horn it into a regression problem when ultimately, I classification problem may have been much more fruitful. My personal interest in the topic, and likely my biases, blinded me to the limitations of this data.
+A great many things could be improved about this algorithm. I feel the project would benefit from an expanded range of features and more nuanced continuous variables which may be available as this data is supposed to be publicly available. My approach to making the variables continuous was a bit of a sledgehammer. Overall, I must concede that the project was a bit of a failure in terms of predicting actual sentencing. I was optimistic about the possibility based on the fact that there was so much data but so many compromises and concessions had to be made to shoe-horn it into a regression problem when ultimately, a classification problem may have been much more fruitful. My personal interest in the topic, and likely my biases, blinded me to the limitations of this data.
 
 
 ## IV. Results
 
-Overfitting is a known issue when using Decision Trees and based on the R2 score, it's clear that the model is capable of generalising well.
+Overfitting is a known issue when using Decision Trees however it's clear that this model is not being overfit as is has poor R2 scores on the training data. This doesn't mean that it will be able to generalise well. It does not generalise well at all.
+
+I feel that this is most clear from the learning curves above. The performance of the model against training data deteriorates immediately as new data is added and then remains static at a low R2 score of about 0.3 from about 10,000 training points onwards. The score on the training data is so low after 10,000 records that the model could not be considered to be overfitting but it still has a low R2 score on the testing data. The ideal situation to be in is a learning curve where the testing and training data lines converge at a point with a high R2 score. This means it is accurate on the seen data but also that it has learned rules from the seen data and it is effectively applying it to the unseen data. For our model, this is not the case. It converges with a very poor R2 score very quickly on a small portion of the training data. If the algorithm is unable to adequately predict seen data, it is unlikely to cope well when given a testing set.    
 
 ### Model Evaluation and Validation
 
